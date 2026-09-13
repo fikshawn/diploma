@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+.card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12), 0 4px 18px rgba(0, 0, 0, 0.02);
+    }
+.input-group {
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-group:focus-within {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+.google-btn {
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.google-btn:hover {
+    background: #f8faff;
+    border-color: #c7d2fe;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+.submit-btn {
+    transition: background 0.2s, transform 0.1s;
+}
+.submit-btn:active {
+    transform: scale(0.98);
+}
