@@ -13,7 +13,7 @@
     "test": "vitest run",
     "format": "biome format",
     "lint": "biome lint",
-    "start": "node --env-file=.env .output/server/index.mjs",
+    "start": "node .output/server/index.mjs",
     "check": "biome check"
   },
   "dependencies": {
