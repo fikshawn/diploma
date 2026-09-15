@@ -21,7 +21,7 @@ export const Route = createFileRoute("/sitemap.xml")({
 			(product) => `
   <url>
     <loc>${host}/products/${product.slug}</loc>
-    <lastmod>${product.updatedAt}</lastmod>
+    <lastmod>${new Date(product.updatedAt).toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
   </url>`,
 		)
