@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getProducts } from "#/lib/server_functions/product";
 
+const host = process.env.SITE_URL ?? "https://certificaatkopen.com";
+
 export const Route = createFileRoute("/sitemap.xml")({
 	server: {
 		handlers: {
@@ -10,7 +12,7 @@ export const Route = createFileRoute("/sitemap.xml")({
 				const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://myapp.com/</loc>
+    <loc>${host}/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -18,7 +20,7 @@ export const Route = createFileRoute("/sitemap.xml")({
 		.map(
 			(product) => `
   <url>
-    <loc>https://myapp.com/products/${product.slug}</loc>
+    <loc>${host}/products/${product.slug}</loc>
     <lastmod>${product.updatedAt}</lastmod>
     <changefreq>weekly</changefreq>
   </url>`,

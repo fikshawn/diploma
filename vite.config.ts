@@ -19,7 +19,7 @@ const config = defineConfig({
 			},
 			sitemap: {
 				enabled: true,
-				host: "http://localhost:3000/",
+				host: "https://certificaatkopen.com/",
 			},
 		}),
 		viteReact(),
