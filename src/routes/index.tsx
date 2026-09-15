@@ -15,7 +15,7 @@ function Home() {
 	const products = Route.useLoaderData();
 	return (
 		<div>
-			<section className="relative bg-linear-to-r from-slate-800 via-slate-700 to-indigo-900 text-white overflow-hidden">
+			<section className="relative bg-slate-800 text-white overflow-hidden">
 				<div className="absolute inset-0 opacity-20 bg-[url('/netherland-bachelor-degree.png')] bg-cover bg-center md:bg-contain mix-blend-overlay"></div>
 				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
 					<div className="max-w-2xl">

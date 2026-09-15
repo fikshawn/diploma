@@ -20,6 +20,7 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as ProductsProductSlugRouteImport } from './routes/products/$productSlug'
 import { Route as DashboardProductsIndexRouteImport } from './routes/dashboard/products/index'
 import { Route as DashboardProductsCreateRouteImport } from './routes/dashboard/products/create'
+import { Route as UploadedImagesProductsSplatRouteImport } from './routes/uploadedImages/products/$'
 import { Route as DashboardProductsProductSlugEditRouteImport } from './routes/dashboard/products/$productSlug.edit'
 
 const IndexRoute = IndexRouteImport.update({
@@ -77,6 +78,12 @@ const DashboardProductsCreateRoute = DashboardProductsCreateRouteImport.update({
   path: '/products/create',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
+const UploadedImagesProductsSplatRoute =
+  UploadedImagesProductsSplatRouteImport.update({
+    id: '/uploadedImages/products/$',
+    path: '/uploadedImages/products/$',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DashboardProductsProductSlugEditRoute =
   DashboardProductsProductSlugEditRouteImport.update({
     id: '/products/$productSlug/edit',
@@ -95,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/products/$productSlug': typeof ProductsProductSlugRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/products/create': typeof DashboardProductsCreateRoute
+  '/uploadedImages/products/$': typeof UploadedImagesProductsSplatRoute
   '/dashboard/products/': typeof DashboardProductsIndexRoute
   '/dashboard/products/$productSlug/edit': typeof DashboardProductsProductSlugEditRoute
 }
@@ -108,6 +116,7 @@ export interface FileRoutesByTo {
   '/products/$productSlug': typeof ProductsProductSlugRoute
   '/dashboard': typeof DashboardIndexRoute
   '/dashboard/products/create': typeof DashboardProductsCreateRoute
+  '/uploadedImages/products/$': typeof UploadedImagesProductsSplatRoute
   '/dashboard/products': typeof DashboardProductsIndexRoute
   '/dashboard/products/$productSlug/edit': typeof DashboardProductsProductSlugEditRoute
 }
@@ -123,6 +132,7 @@ export interface FileRoutesById {
   '/products/$productSlug': typeof ProductsProductSlugRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/products/create': typeof DashboardProductsCreateRoute
+  '/uploadedImages/products/$': typeof UploadedImagesProductsSplatRoute
   '/dashboard/products/': typeof DashboardProductsIndexRoute
   '/dashboard/products/$productSlug/edit': typeof DashboardProductsProductSlugEditRoute
 }
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/products/$productSlug'
     | '/dashboard/'
     | '/dashboard/products/create'
+    | '/uploadedImages/products/$'
     | '/dashboard/products/'
     | '/dashboard/products/$productSlug/edit'
   fileRoutesByTo: FileRoutesByTo
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/products/$productSlug'
     | '/dashboard'
     | '/dashboard/products/create'
+    | '/uploadedImages/products/$'
     | '/dashboard/products'
     | '/dashboard/products/$productSlug/edit'
   id:
@@ -166,6 +178,7 @@ export interface FileRouteTypes {
     | '/products/$productSlug'
     | '/dashboard/'
     | '/dashboard/products/create'
+    | '/uploadedImages/products/$'
     | '/dashboard/products/'
     | '/dashboard/products/$productSlug/edit'
   fileRoutesById: FileRoutesById
@@ -179,6 +192,7 @@ export interface RootRouteChildren {
   Panchak2Route: typeof Panchak2Route
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ProductsProductSlugRoute: typeof ProductsProductSlugRoute
+  UploadedImagesProductsSplatRoute: typeof UploadedImagesProductsSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -260,6 +274,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardProductsCreateRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
+    '/uploadedImages/products/$': {
+      id: '/uploadedImages/products/$'
+      path: '/uploadedImages/products/$'
+      fullPath: '/uploadedImages/products/$'
+      preLoaderRoute: typeof UploadedImagesProductsSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/products/$productSlug/edit': {
       id: '/dashboard/products/$productSlug/edit'
       path: '/products/$productSlug/edit'
@@ -297,6 +318,7 @@ const rootRouteChildren: RootRouteChildren = {
   Panchak2Route: Panchak2Route,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ProductsProductSlugRoute: ProductsProductSlugRoute,
+  UploadedImagesProductsSplatRoute: UploadedImagesProductsSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

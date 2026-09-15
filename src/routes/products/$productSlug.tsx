@@ -237,38 +237,39 @@ function RouteComponent() {
 				</section>
 
 				<section className="mt-16">
-					<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-						<div className="bg-white/80 backdrop-blur-sm rounded border border-slate-200/60 p-4 hover:shadow-md transition">
-							<h2 className="text-3xl font-semibold text-blue-600 mb-3">
-								Bestelproces
-							</h2>
-							<ol className="list-decimal list-inside space-y-3">
-								<li className="px-3 py-1 bg-gray-200">
-									Download het vereiste bestelformulier, vul uw gegevens in en
-									stuur het naar ons.
-								</li>
-								<li className="px-3 py-1 bg-gray-200">
-									Betaal 50% als aanbetaling
-								</li>
-								<li className="px-3 py-1 bg-gray-200">
-									Ontwerp elektronische concepten (digitale kopie).
-								</li>
-								<li className="px-3 py-1 bg-gray-200">
-									Bevestig inhoudsinformatie.
-								</li>
-								<li className="px-3 py-1 bg-gray-200">
-									Betaal de resterende 50% saldo.
-								</li>
-								<li className="px-3 py-1 bg-gray-200">
-									{" "}
-									Productie printen van producten (fysieke kopie).
-								</li>
-								<li className="px-3 py-1 bg-gray-200">
-									Verpakken en expres verzenden.
-								</li>
-							</ol>
-						</div>
-						<div className="bg-white/80 backdrop-blur-sm rounded border border-slate-200/60 p-4 hover:shadow-md transition">
+					<h2 className="text-3xl font-semibold text-blue-600 mb-3">
+						Bestelproces
+					</h2>
+
+					<div className="bg-white/80 backdrop-blur-sm rounded border border-slate-200/60 p-4 hover:shadow-md transition">
+						<div className="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
+						<ol className="list-decimal list-inside space-y-3">
+							<li className="px-3 py-1 bg-gray-200">
+								Download het vereiste bestelformulier, vul uw gegevens in en
+								stuur het naar ons.
+							</li>
+							<li className="px-3 py-1 bg-gray-200">
+								Betaal 50% als aanbetaling
+							</li>
+							<li className="px-3 py-1 bg-gray-200">
+								Ontwerp elektronische concepten (digitale kopie).
+							</li>
+							<li className="px-3 py-1 bg-gray-200">
+								Bevestig inhoudsinformatie.
+							</li>
+							<li className="px-3 py-1 bg-gray-200">
+								Betaal de resterende 50% saldo.
+							</li>
+							<li className="px-3 py-1 bg-gray-200">
+								{" "}
+								Productie printen van producten (fysieke kopie).
+							</li>
+							<li className="px-3 py-1 bg-gray-200">
+								Verpakken en expres verzenden.
+							</li>
+						</ol>
+					</div>
+					{/* <div className="bg-white/80 backdrop-blur-sm rounded border border-slate-200/60 p-4 hover:shadow-md transition">
 							<h2 className="text-3xl font-semibold text-blue-600 mb-3">
 								Betaalmethoden
 							</h2>
@@ -298,8 +299,8 @@ function RouteComponent() {
 									<span>Western Union</span>
 								</div>
 							</div>
-						</div>
-						<div className="bg-white/80 backdrop-blur-sm rounded border border-slate-200/60 p-4 hover:shadow-md transition">
+						</div> */}
+					{/* <div className="bg-white/80 backdrop-blur-sm rounded border border-slate-200/60 p-4 hover:shadow-md transition">
 							<h2 className="text-3xl font-semibold text-blue-600 mb-3">
 								Verzendmethoden
 							</h2>
@@ -321,8 +322,7 @@ function RouteComponent() {
 									<span>PDF mailing (digitale kopie)</span>
 								</div>
 							</div>
-						</div>
-					</div>
+						</div> */}
 				</section>
 			</main>
 		</div>
