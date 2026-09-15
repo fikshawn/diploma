@@ -22,9 +22,6 @@ export default function NavBar() {
 					<div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
 						<Link to="/" className="shrink-0 flex items-center">
 							<img className="block h-20 w-auto" src="/logo.png" alt="Logo" />
-							<span className="ml-2 text-xl font-bold text-gray-800">
-								Diploma Kopen
-							</span>
 						</Link>
 						<div className="hidden sm:block sm:ml-6">
 							<div className="flex space-x-4 mt-5">
