@@ -42,7 +42,12 @@ export const uploadImage = createServerFn({
 				extname(imagePayload.originalName).toLowerCase() || ".png";
 			const filename = `${Date.now()}-${crypto.randomUUID()}${fileExt}`;
 
-			const uploadDir = join(process.cwd(), "./uploadedImages/products");
+			const uploadDir = join(
+				process.cwd(),
+				"public",
+				"uploadedImages",
+				"products",
+			);
 			await mkdir(uploadDir, { recursive: true });
 			await writeFile(join(uploadDir, filename), buffer);
 

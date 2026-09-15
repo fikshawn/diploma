@@ -5,7 +5,12 @@ export async function deleteImage({ data }: { data: { oldImage: string } }) {
 	try {
 		const imageUrl = data.oldImage;
 		const sanitizedFilename = path.basename(imageUrl);
-		const uploadDir = path.join(process.cwd(), "uploadedImages", "products");
+		const uploadDir = path.join(
+			process.cwd(),
+			"public",
+			"uploadedImages",
+			"products",
+		);
 		const imagePath = path.join(uploadDir, sanitizedFilename);
 
 		//	const imagePath = path.join(process.cwd(), "uploadedImages", cleanPath);
