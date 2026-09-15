@@ -51,13 +51,8 @@ export const Route = createFileRoute("/products/$productSlug")({
 					name: loaderData?.metatitle,
 					description: loaderData?.excerpt,
 					image: loaderData?.image,
-					url: `/products/${loaderData?.slug}`,
+					url: `https://certificaatkopen.com/products/${loaderData?.slug}`,
 					sku: loaderData?.slug,
-					offers: {
-						"@type": "Offer",
-						availability: "https://schema.org/InStock",
-						deliveryLeadTime: "3-5 days",
-					},
 					brand: {
 						"@type": "Organization",
 						name: "Dutch Docki",
