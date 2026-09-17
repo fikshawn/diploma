@@ -47,22 +47,6 @@ export const Route = createFileRoute("/products/$productSlug")({
 				type: "application/ld+json",
 				children: JSON.stringify({
 					"@context": "https://schema.org",
-					"@type": "Product",
-					name: loaderData?.metatitle,
-					description: loaderData?.excerpt,
-					image: loaderData?.image,
-					url: `https://certificaatkopen.com/products/${loaderData?.slug}`,
-					sku: loaderData?.slug,
-					brand: {
-						"@type": "Organization",
-						name: "Dutch Docki",
-					},
-				}),
-			},
-			{
-				type: "application/ld+json",
-				children: JSON.stringify({
-					"@context": "https://schema.org",
 					"@type": "BreadcrumbList",
 					itemListElement: [
 						{
