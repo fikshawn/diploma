@@ -22,7 +22,7 @@ const config = defineConfig({
 			},
 			sitemap: {
 				enabled: true,
-				host: "https://certificaatkopen.com/",
+				host: "https://www.certificaatkopen.com/",
 			},
 		}),
 		viteReact(),

@@ -1,11 +1,12 @@
 import { defineEventHandler } from "h3";
 
-const HOST = "certificaatkopen.com";
+const WWW_HOST = "www.certificaatkopen.com";
+const BARE_HOST = "certificaatkopen.com";
 
 export default defineEventHandler((event) => {
 	const host = event.node.req.headers.host ?? "";
-	if (host !== `www.${HOST}` && host !== `www.www.${HOST}`) return;
-	const url = new URL(event.path ?? "/", `https://${HOST}`);
+	if (host !== BARE_HOST) return;
+	const url = new URL(event.path ?? "/", `https://${WWW_HOST}`);
 	return new Response(null, {
 		status: 301,
 		headers: {

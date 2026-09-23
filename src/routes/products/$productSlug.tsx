@@ -37,15 +37,15 @@ export const Route = createFileRoute("/products/$productSlug")({
 			{ property: "og:description", content: loaderData?.excerpt },
 			{
 				property: "og:url",
-				content: `https://certificaatkopen.com/products/${loaderData?.slug}`,
+				content: `https://www.certificaatkopen.com/products/${loaderData?.slug}`,
 			},
 			{ property: "og:type", content: "website" },
 			{ property: "og:site_name", content: "Diploma Kopen" },
 			{
 				property: "og:image",
 				content: loaderData?.image
-					? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
-					: "https://certificaatkopen.com/logo.png",
+					? `https://www.certificaatkopen.com/uploadedImages/products/${loaderData.image}`
+					: "https://www.certificaatkopen.com/logo.png",
 			},
 			// Twitter Card
 			{ name: "twitter:card", content: "summary_large_image" },
@@ -54,14 +54,14 @@ export const Route = createFileRoute("/products/$productSlug")({
 			{
 				name: "twitter:image",
 				content: loaderData?.image
-					? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
-					: "https://certificaatkopen.com/logo.png",
+					? `https://www.certificaatkopen.com/uploadedImages/products/${loaderData.image}`
+					: "https://www.certificaatkopen.com/logo.png",
 			},
 		],
 		links: [
 			{
 				rel: "canonical",
-				href: `https://certificaatkopen.com/products/${loaderData?.slug}`,
+				href: `https://www.certificaatkopen.com/products/${loaderData?.slug}`,
 			},
 		],
 		scripts: [

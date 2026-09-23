@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getProducts } from "#/lib/server_functions/product";
 
-const host = process.env.SITE_URL ?? "https://certificaatkopen.com";
+const host = process.env.SITE_URL ?? "https://www.certificaatkopen.com";
 
 export const Route = createFileRoute("/sitemap.xml")({
 	server: {
