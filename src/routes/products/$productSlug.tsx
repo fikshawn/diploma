@@ -10,58 +10,75 @@ import {
 import { useState } from "react";
 import { Button } from "#/components/ui/button";
 import { fetchSmallFile } from "#/lib/download-handler";
-import { getProductBySlug } from "#/lib/server_functions/product";
+import { getExternalLinks } from "#/lib/external-links";
+import { getProductBySlug, getProducts } from "#/lib/server_functions/product";
 
 export const Route = createFileRoute("/products/$productSlug")({
 	loader: async ({ params }) => {
 		const product = await getProductBySlug({
 			data: { slug: params.productSlug },
 		});
-		return product;
+		const { allProducts } = await getProducts();
+		const relatedProducts = (allProducts ?? [])
+			.filter((item) => item.id !== product?.id)
+			.slice(0, 4);
+		const externalLinks = product ? getExternalLinks(product) : [];
+		return { product, relatedProducts, externalLinks };
 	},
 	head: ({ loaderData }) => ({
 		meta: [
-			{ title: loaderData?.metatitle ?? "Default Title" },
+			{
+				title: loaderData?.product?.metatitle ?? "Default Title",
+			},
 			{
 				name: "description",
-				content: loaderData?.excerpt ?? "Default Description",
+				content: loaderData?.product?.excerpt ?? "Default Description",
 			},
 			{
 				name: "keywords",
-				content: loaderData?.tags?.length
-					? loaderData.tags.join(", ")
-					: loaderData?.metatitle,
+				content: loaderData?.product?.tags?.length
+					? loaderData.product.tags.join(", ")
+					: loaderData?.product?.metatitle,
 			},
 			// Open Graph
-			{ property: "og:title", content: loaderData?.metatitle },
-			{ property: "og:description", content: loaderData?.excerpt },
+			{ property: "og:title", content: loaderData?.product?.metatitle },
+			{
+				property: "og:description",
+				content: loaderData?.product?.excerpt,
+			},
 			{
 				property: "og:url",
-				content: `https://certificaatkopen.com/products/${loaderData?.slug}`,
+				content: `https://certificaatkopen.com/products/${loaderData?.product?.slug}`,
 			},
 			{ property: "og:type", content: "website" },
 			{ property: "og:site_name", content: "Diploma Kopen" },
 			{
 				property: "og:image",
-				content: loaderData?.image
-					? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
+				content: loaderData?.product?.image
+					? `https://certificaatkopen.com/uploadedImages/products/${loaderData.product.image}`
 					: "https://certificaatkopen.com/logo.png",
 			},
 			// Twitter Card
 			{ name: "twitter:card", content: "summary_large_image" },
-			{ name: "twitter:title", content: loaderData?.metatitle },
-			{ name: "twitter:description", content: loaderData?.excerpt },
+			{
+				name: "twitter:title",
+				content: loaderData?.product?.metatitle,
+			},
+			{
+				name: "twitter:description",
+				content: loaderData?.product?.excerpt,
+			},
 			{
 				name: "twitter:image",
-				content: loaderData?.image
-					? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
+				content: loaderData?.product?.image
+					? `https://certificaatkopen.com/uploadedImages/products/${loaderData.product.image}`
 					: "https://certificaatkopen.com/logo.png",
 			},
 		],
 		links: [
 			{
 				rel: "canonical",
-				href: `https://certificaatkopen.com/products/${loaderData?.slug}`,
+				href: `https://certificaatkopen.com/products/${loaderData?.product?.slug}`,
 			},
 		],
 		scripts: [
@@ -80,7 +97,7 @@ export const Route = createFileRoute("/products/$productSlug")({
 						{
 							"@type": "ListItem",
 							position: 2,
-							name: loaderData?.title,
+							name: loaderData?.product?.title,
 						},
 					],
 				}),
@@ -93,7 +110,7 @@ export const Route = createFileRoute("/products/$productSlug")({
 function RouteComponent() {
 	const [showMore, setShowMore] = useState(false);
 
-	const product = Route.useLoaderData();
+	const { product, relatedProducts, externalLinks } = Route.useLoaderData();
 
 	const toggleShowMore = () => {
 		setShowMore(!showMore);
@@ -324,6 +341,111 @@ function RouteComponent() {
 								</div>
 							</div>
 						</div> */}
+				</section>
+
+				{relatedProducts.length > 0 && (
+					<section className="mt-16">
+						<h2 className="text-3xl font-semibold text-blue-600 mb-3">
+							Andere diploma's
+						</h2>
+						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+							{relatedProducts.map((related) => (
+								<Link
+									key={related.id}
+									to="/products/$productSlug"
+									params={{ productSlug: related.slug }}
+									className="bg-white rounded-2xl border border-slate-200/70 p-4 hover:shadow-md transition"
+								>
+									{related.image ? (
+										<Image
+											src={`/uploadedImages/products/${related.image}`}
+											alt={related.title}
+											width={300}
+											height={200}
+											layout="constrained"
+											className="w-full h-36 object-cover rounded-lg"
+										/>
+									) : null}
+									<h3 className="font-bold text-slate-800 mt-3">
+										{related.title}
+									</h3>
+									<p className="text-sm text-indigo-600 mt-1">
+										{related.excerpt}
+									</p>
+								</Link>
+							))}
+						</div>
+					</section>
+				)}
+
+				{externalLinks.length > 0 && (
+					<section className="mt-16">
+						<h2 className="text-3xl font-semibold text-blue-600 mb-3">
+							Meer informatie
+						</h2>
+						<p className="text-slate-600 mb-4">
+							Betrouwbare bronnen over {product?.title ?? "dit onderwerp"} voor
+							verdere achtergrondinformatie.
+						</p>
+						<ul className="space-y-3">
+							{externalLinks.map((source) => (
+								<li
+									key={source.url}
+									className="bg-white rounded-2xl border border-slate-200/70 p-4 hover:shadow-md transition"
+								>
+									<a
+										href={source.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="font-semibold text-indigo-600 hover:text-indigo-800 hover:underline"
+									>
+										{source.label}
+									</a>
+									<p className="text-sm text-slate-600 mt-1">
+										{source.description}
+									</p>
+								</li>
+							))}
+						</ul>
+					</section>
+				)}
+
+				<section className="mt-16 bg-slate-800 text-white rounded-2xl p-8">
+					<div className="flex flex-col md:flex-row items-center justify-between gap-6">
+						<div>
+							<h2 className="text-2xl font-bold">Heeft u nog vragen?</h2>
+							<p className="text-slate-300 mt-1">
+								Bekijk onze{" "}
+								<Link
+									to="/faq"
+									className="text-indigo-300 underline hover:text-white transition"
+								>
+									veelgestelde vragen
+								</Link>{" "}
+								of{" "}
+								<Link
+									to="/contact-us"
+									className="text-indigo-300 underline hover:text-white transition"
+								>
+									neem contact met ons op
+								</Link>
+								. Bekijk ook{" "}
+								<Link
+									to="/"
+									className="text-indigo-300 underline hover:text-white transition"
+								>
+									alle beschikbare diploma's
+								</Link>
+								.
+							</p>
+						</div>
+						<Link
+							to="/contact-us"
+							className="shrink-0 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-xl transition"
+						>
+							Bestelformulier downloaden
+						</Link>
+					</div>
 				</section>
 			</main>
 		</div>

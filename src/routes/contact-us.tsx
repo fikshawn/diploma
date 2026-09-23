@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/contact-us")({
 	head: () => ({
@@ -49,8 +49,23 @@ function RouteComponent() {
 							<span className="text-indigo-300">u te helpen</span>
 						</h1>
 						<p className="mt-4 text-slate-200 text-lg max-w-lg leading-relaxed">
-							Heeft u vragen over onze documenten, bestellingen of diensten? Neem contact
-							met ons op — ons team staat klaar om u te helpen.
+							Heeft u vragen over onze documenten, bestellingen of diensten?
+							Neem contact met ons op — ons team staat klaar om u te helpen.
+							Bekijk eerst het{" "}
+							<Link
+								to="/faq"
+								className="text-indigo-200 underline hover:text-white transition"
+							>
+								overzicht van veelgestelde vragen
+							</Link>{" "}
+							of blader door{" "}
+							<Link
+								to="/"
+								className="text-indigo-200 underline hover:text-white transition"
+							>
+								het aanbod van diploma's
+							</Link>{" "}
+							waaronder VWO, HAVO, HBO en VCA-certificaten.
 						</p>
 					</div>
 				</div>
@@ -78,7 +93,9 @@ function RouteComponent() {
 						<div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600 text-xl">
 							<i className="fas fa-phone"></i>
 						</div>
-						<h3 className="font-bold text-slate-800 mt-3">Neem contact op via Telegram</h3>
+						<h3 className="font-bold text-slate-800 mt-3">
+							Neem contact op via Telegram
+						</h3>
 						<a
 							href="tel:+18005551234"
 							className="text-indigo-600 hover:text-indigo-800 font-medium text-sm mt-2 inline-block"
