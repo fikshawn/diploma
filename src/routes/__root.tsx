@@ -30,7 +30,8 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "Koop certificaten online | Diploma Kopen",
+				title:
+					"Koop certificaten online | Diploma Kopen - Jouw nummer 1 online site voor het behalen van je certificaten",
 			},
 			{
 				name: "description",
