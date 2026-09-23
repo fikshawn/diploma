@@ -15,7 +15,7 @@ export const Route = createFileRoute("/contact-us")({
 						{
 							"@type": "Organization",
 							name: "Diploma Kopen",
-							url: "https://www.certificaatkopen.com",
+							url: "https://certificaatkopen.com",
 							contactPoint: [
 								{
 									"@type": "ContactPoint",

@@ -53,7 +53,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 			},
 			{
 				property: "og:url",
-				content: "https://www.certificaatkopen.com",
+				content: "https://certificaatkopen.com",
 			},
 			{
 				property: "og:site_name",
@@ -61,7 +61,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 			},
 			{
 				property: "og:image",
-				content: "https://www.certificaatkopen.com/logo.png",
+				content: "https://certificaatkopen.com/logo.png",
 			},
 		],
 		links: [
