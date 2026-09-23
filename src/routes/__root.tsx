@@ -31,7 +31,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 			},
 			{
 				title:
-					"Koop certificaten online | Diploma Kopen - Jouw nummer 1 online site voor het behalen van je certificaten",
+					"Koop certificaten online | Jouw nummer 1 online site voor het behalen van je certificaten",
 			},
 			{
 				name: "description",
