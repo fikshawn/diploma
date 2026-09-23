@@ -107,46 +107,6 @@ function Home() {
 					</div>
 				))}
 			</section>
-			<section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-				<div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-					<div>
-						<h2 className="text-xl font-bold text-slate-800">
-							Vragen over uw bestelling?
-						</h2>
-						<p className="text-slate-600 text-sm mt-1">
-							Lees het{" "}
-							<Link
-								to="/faq"
-								className="text-indigo-600 hover:underline font-medium"
-							>
-								overzicht van veelgestelde vragen
-							</Link>{" "}
-							over bestellingen, betalingen en verzending, of{" "}
-							<Link
-								to="/contact-us"
-								className="text-indigo-600 hover:underline font-medium"
-							>
-								neem contact met ons op
-							</Link>
-							.
-						</p>
-					</div>
-					<div className="flex gap-3 shrink-0">
-						<Link
-							to="/faq"
-							className="px-4 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium text-sm"
-						>
-							FAQ
-						</Link>
-						<Link
-							to="/contact-us"
-							className="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 font-medium text-sm"
-						>
-							Contact opnemen
-						</Link>
-					</div>
-				</div>
-			</section>
 		</div>
 	);
 }

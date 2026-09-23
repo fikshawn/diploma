@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import {
 	Award,
 	ChevronDown,
@@ -150,28 +150,8 @@ function RouteComponent() {
 						</h1>
 						<p className="mt-4 text-slate-200 text-lg max-w-lg leading-relaxed">
 							Alles wat u moet weten over bestellingen, betalingen, documenten
-							en verzending. Staat uw vraag er niet tussen? Neem gerust{" "}
-							<Link
-								to="/contact-us"
-								className="text-indigo-200 underline hover:text-white transition"
-							>
-								contact met ons op
-							</Link>
-							. Blader ook door{" "}
-							<Link
-								to="/"
-								className="text-indigo-200 underline hover:text-white transition"
-							>
-								het volledige aanbod van diploma's
-							</Link>{" "}
-							of download het{" "}
-							<Link
-								to="/contact-us"
-								className="text-indigo-200 underline hover:text-white transition"
-							>
-								bestelformulier
-							</Link>{" "}
-							om direct een bestelling te starten.
+							en verzending. Staat uw vraag er niet tussen? Neem gerust contact
+							met ons op.
 						</p>
 					</div>
 				</div>
@@ -235,21 +215,13 @@ function RouteComponent() {
 					<p className="text-slate-500 text-sm mt-1 mb-4">
 						Ons team staat klaar om u binnen 24 uur te antwoorden.
 					</p>
-					<div className="flex flex-wrap justify-center gap-3">
-						<Link
-							to="/contact-us"
-							className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-xl transition shadow-sm shadow-indigo-200/50"
-						>
-							<MailPlus />
-							Neem contact op
-						</Link>
-						<Link
-							to="/"
-							className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-6 py-3 rounded-xl transition"
-						>
-							Bekijk alle diploma's
-						</Link>
-					</div>
+					<a
+						href="mailto:support@certificaatkopen.com"
+						className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-xl transition shadow-sm shadow-indigo-200/50"
+					>
+						<MailPlus />
+						Neem contact op
+					</a>
 				</div>
 			</section>
 		</div>
