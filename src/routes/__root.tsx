@@ -30,7 +30,37 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "Diploma Kopen",
+				title: "Koop certificaten online | Diploma Kopen",
+			},
+			{
+				name: "description",
+				content:
+					"Koop certificaten online — bestel certificaten en diploma's zoals VWO, HAVO, HBO en VCA met een uniform, compatibel en premium afwerking.",
+			},
+			{
+				property: "og:title",
+				content: "Koop certificaten online",
+			},
+			{
+				property: "og:description",
+				content:
+					"Diploma Kopen — bestel certificaten en diploma's zoals VWO, HAVO, HBO en VCA met een uniform, compatibel en premium afwerking.",
+			},
+			{
+				property: "og:type",
+				content: "website",
+			},
+			{
+				property: "og:url",
+				content: "https://certificaatkopen.com",
+			},
+			{
+				property: "og:site_name",
+				content: "Diploma Kopen",
+			},
+			{
+				property: "og:image",
+				content: "https://certificaatkopen.com/logo.png",
 			},
 		],
 		links: [

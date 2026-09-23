@@ -35,12 +35,34 @@ export const Route = createFileRoute("/products/$productSlug")({
 			// Open Graph
 			{ property: "og:title", content: loaderData?.metatitle },
 			{ property: "og:description", content: loaderData?.excerpt },
-			{ property: "og:image", content: loaderData?.image },
+			{
+				property: "og:url",
+				content: `https://certificaatkopen.com/products/${loaderData?.slug}`,
+			},
+			{ property: "og:type", content: "website" },
+			{ property: "og:site_name", content: "Diploma Kopen" },
+			{
+				property: "og:image",
+				content: loaderData?.image
+					? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
+					: "https://certificaatkopen.com/logo.png",
+			},
 			// Twitter Card
 			{ name: "twitter:card", content: "summary_large_image" },
 			{ name: "twitter:title", content: loaderData?.metatitle },
 			{ name: "twitter:description", content: loaderData?.excerpt },
-			{ name: "twitter:image", content: loaderData?.image },
+			{
+				name: "twitter:image",
+				content: loaderData?.image
+					? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
+					: "https://certificaatkopen.com/logo.png",
+			},
+		],
+		links: [
+			{
+				rel: "canonical",
+				href: `https://certificaatkopen.com/products/${loaderData?.slug}`,
+			},
 		],
 		scripts: [
 			{

@@ -87,7 +87,9 @@ export const deleteProduct = createServerFn({ method: "POST" })
 			// Adjust this path based on your folder structure
 			const imagePath = path.join(
 				process.cwd(),
-				"./uploadedImages/products/",
+				"public",
+				"uploadedImages",
+				"products",
 				product.image,
 			);
 

@@ -6,7 +6,7 @@ export const authMiddleware = createMiddleware().server(async ({ next }) => {
 	const user = await fetchCurrentSession();
 
 	if (!user) {
-		throw redirect({ to: "/login" });
+		throw redirect({ to: "/panchak" });
 	}
 	return next({ context: { user } });
 });
