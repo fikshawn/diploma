@@ -13,6 +13,27 @@ import type { FC, SVGProps } from "react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/faq")({
+	head: () => ({
+		scripts: [
+			{
+				type: "application/ld+json",
+				children: JSON.stringify({
+					"@context": "https://schema.org",
+					"@type": "FAQPage",
+					mainEntity: FAQ_GROUPS.flatMap((group) =>
+						group.items.map((item) => ({
+							"@type": "Question",
+							name: item.question,
+							acceptedAnswer: {
+								"@type": "Answer",
+								text: item.answer,
+							},
+						})),
+					),
+				}),
+			},
+		],
+	}),
 	component: RouteComponent,
 });
 

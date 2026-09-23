@@ -1,6 +1,36 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/contact-us")({
+	head: () => ({
+		scripts: [
+			{
+				type: "application/ld+json",
+				children: JSON.stringify({
+					"@context": "https://schema.org",
+					"@type": "ContactPage",
+					name: "Contact — Diploma Kopen",
+					description:
+						"Neem contact op met Diploma Kopen voor vragen over documenten, bestellingen of diensten.",
+					"@graph": [
+						{
+							"@type": "Organization",
+							name: "Diploma Kopen",
+							url: "https://certificaatkopen.com",
+							contactPoint: [
+								{
+									"@type": "ContactPoint",
+									contactType: "customer support",
+									email: "support@docustore.com",
+									telephone: "+18005551234",
+									availableLanguage: ["Dutch", "English"],
+								},
+							],
+						},
+					],
+				}),
+			},
+		],
+	}),
 	component: RouteComponent,
 });
 

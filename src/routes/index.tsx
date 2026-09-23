@@ -8,6 +8,28 @@ export const Route = createFileRoute("/")({
 		const products = await getProducts();
 		return products;
 	},
+	head: ({ loaderData }) => ({
+		scripts: [
+			{
+				type: "application/ld+json",
+				children: JSON.stringify({
+					"@context": "https://schema.org",
+					"@type": "ItemList",
+					name: "Beschikbare Diplomas",
+					itemListElement: (loaderData?.allProducts ?? []).map(
+						(product, index) => ({
+							"@type": "ListItem",
+							position: index + 1,
+							name: product.title,
+							image: `https://certificaatkopen.com/uploadedImages/products/${product.image}`,
+							url: `https://certificaatkopen.com/products/${product.slug}`,
+							description: product.excerpt,
+						}),
+					),
+				}),
+			},
+		],
+	}),
 	component: Home,
 });
 
