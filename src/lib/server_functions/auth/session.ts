@@ -7,40 +7,22 @@ type SessionData = {
 	username?: string;
 };
 
+const SESSION_NAME = "app-session";
+
+function getSessionSecret(): string {
+	const secret = process.env.SESSION_SECRET;
+	if (!secret || secret.length < 32) {
+		throw new Error(
+			"SESSION_SECRET must be set and at least 32 characters long",
+		);
+	}
+	return secret;
+}
+
 export function useAppSession() {
 	return useSession<SessionData>({
-		// Session configuration
-		name: "app-session",
-		password: process.env.SESSION_SECRET!, // At least 32 characters
-		// Optional: customize cookie settings
-		cookie: {
-			secure: process.env.NODE_ENV === "production",
-			sameSite: "lax",
-			httpOnly: true,
-		},
-	});
-}
-
-export function useAppSessionCookie() {
-	return useSession<SessionData>({
-		// Session configuration
-		name: "app-session",
-		password: process.env.SESSION_SECRET!, // At least 32 characters
-		// Optional: customize cookie settings
-		cookie: {
-			secure: process.env.NODE_ENV === "production",
-			sameSite: "lax",
-			httpOnly: true,
-		},
-	});
-}
-
-export function useUserSession() {
-	return useSession<SessionData>({
-		// Session configuration
-		name: "user-session",
-		password: process.env.SESSION_SECRET!, // At least 32 characters
-		// Optional: customize cookie settings
+		name: SESSION_NAME,
+		password: getSessionSecret(),
 		cookie: {
 			secure: process.env.NODE_ENV === "production",
 			sameSite: "lax",

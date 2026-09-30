@@ -15,7 +15,7 @@ export const Route = createFileRoute("/uploadedImages/products/$")({
 	server: {
 		handlers: {
 			GET: async ({ params }) => {
-				const filename = basename(params._splat);
+				const filename = basename(params._splat ?? "");
 				const imagePath = join(
 					process.cwd(),
 					"public",
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/uploadedImages/products/$")({
 					MIME_TYPES[extname(filename).toLowerCase()] ??
 					"application/octet-stream";
 
-				return new Response(image, {
+				return new Response(new Uint8Array(image), {
 					headers: {
 						"Content-Type": contentType,
 					},

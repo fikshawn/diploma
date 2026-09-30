@@ -6,6 +6,12 @@ import { toast } from "sonner";
 import { loginFn } from "#/lib/server_functions/auth/authentication";
 
 export const Route = createFileRoute("/panchak")({
+	head: () => ({
+		meta: [
+			{ title: "Inloggen | Certificaat Kopen" },
+			{ name: "robots", content: "noindex, nofollow" },
+		],
+	}),
 	component: RouteComponent,
 });
 

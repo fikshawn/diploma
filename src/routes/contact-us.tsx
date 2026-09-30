@@ -20,8 +20,7 @@ export const Route = createFileRoute("/contact-us")({
 								{
 									"@type": "ContactPoint",
 									contactType: "customer support",
-									email: "support@docustore.com",
-									telephone: "+18005551234",
+									email: "support@certificaatkopen.com",
 									availableLanguage: ["Dutch", "English"],
 								},
 							],
@@ -67,10 +66,10 @@ function RouteComponent() {
 							Wij reageren binnen 24 uur
 						</p>
 						<a
-							href="mailto:support@docustore.com"
+							href="mailto:support@certificaatkopen.com"
 							className="text-indigo-600 hover:text-indigo-800 font-medium text-sm mt-2 inline-block"
 						>
-							support@docustore.com
+							support@certificaatkopen.com
 						</a>
 					</div>
 
@@ -81,11 +80,16 @@ function RouteComponent() {
 						<h3 className="font-bold text-slate-800 mt-3">
 							Neem contact op via Telegram
 						</h3>
+						<p className="text-sm text-slate-500 mt-1">
+							We reageren binnen 24 uur
+						</p>
 						<a
-							href="tel:+18005551234"
+							href="https://t.me/Cornelisjansen"
+							target="_blank"
+							rel="noopener noreferrer"
 							className="text-indigo-600 hover:text-indigo-800 font-medium text-sm mt-2 inline-block"
 						>
-							+1 (800) 555-1234
+							@cornelisjansen
 						</a>
 					</div>
 
@@ -94,10 +98,8 @@ function RouteComponent() {
 							<i className="fas fa-map-marker-alt"></i>
 						</div>
 						<h3 className="font-bold text-slate-800 mt-3">Bezoek ons</h3>
-						<p className="text-sm text-slate-500 mt-1">
-							123 Document Street, Suite 200
-						</p>
-						<p className="text-sm text-slate-500">New York, NY 10001</p>
+						<p className="text-sm text-slate-500 mt-1">Certificaat Kopen</p>
+						<p className="text-sm text-slate-500">Nederland</p>
 					</div>
 
 					{/* <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200/70 p-6 sm:p-8">

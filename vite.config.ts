@@ -19,10 +19,11 @@ const config = defineConfig({
 			prerender: {
 				enabled: true,
 				crawlLinks: true,
-			},
-			sitemap: {
-				enabled: true,
-				host: "https://certificaatkopen.com/",
+				// Admin routes are behind adminMiddleware. Prerendering them would
+				// follow the redirect to "/" and emit the public homepage HTML to
+				// /dashboard/*, which would then be served statically and bypass the
+				// auth middleware. Keep them server-rendered instead.
+				filter: (page) => !page.path.startsWith("/dashboard"),
 			},
 		}),
 		viteReact(),

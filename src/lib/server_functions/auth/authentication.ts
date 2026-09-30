@@ -19,13 +19,13 @@ export const signupFn = createServerFn({ method: "POST" })
 			})
 			.returning();
 		// 1. Log the user in immediately upon successful signup
-		// const session = await useAppSession();
-		// await session.update({
-		// 	userId: user.id,
-		// 	email: user.email,
-		// 	role: user.role,
-		// 	username: user.username,
-		// });
+		const session = await useAppSession();
+		await session.update({
+			userId: user.id,
+			email: user.email,
+			role: user.role ?? undefined,
+			username: user.username,
+		});
 
 		return {
 			user,

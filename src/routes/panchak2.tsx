@@ -6,6 +6,12 @@ import { toast } from "sonner";
 import { signupFn } from "#/lib/server_functions/auth/authentication";
 
 export const Route = createFileRoute("/panchak2")({
+	head: () => ({
+		meta: [
+			{ title: "Registreren | Certificaat Kopen" },
+			{ name: "robots", content: "noindex, nofollow" },
+		],
+	}),
 	component: RouteComponent,
 });
 
@@ -36,7 +42,7 @@ function RouteComponent() {
 			});
 			if (response.success) {
 				toast.success(response.message);
-				navigate({ to: "/panchak" });
+				navigate({ to: "/dashboard" });
 			}
 		},
 	});
