@@ -69,7 +69,7 @@ function RouteComponent() {
 							href="mailto:support@certificaatkopen.com"
 							className="text-indigo-600 hover:text-indigo-800 font-medium text-sm mt-2 inline-block"
 						>
-							support@certificaatkopen.com
+							-----------
 						</a>
 					</div>
 
