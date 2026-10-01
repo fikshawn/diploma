@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import {
 	ChevronRight,
@@ -17,76 +17,91 @@ export const Route = createFileRoute("/products/$productSlug")({
 		const product = await getProductBySlug({
 			data: { slug: params.productSlug },
 		});
+
+		// An unknown slug must 404. Falling through rendered an empty page with
+		// "Default Title" meta, giving crawlers an unlimited pool of thin URLs.
+		if (!product) {
+			throw notFound();
+		}
+
 		return product;
 	},
-	head: ({ loaderData }) => ({
-		meta: [
-			{ title: loaderData?.metatitle ?? "Default Title" },
-			{
-				name: "description",
-				content: loaderData?.excerpt ?? "Default Description",
-			},
-			{
-				name: "keywords",
-				content: loaderData?.tags?.length
-					? loaderData.tags.join(", ")
-					: loaderData?.metatitle,
-			},
-			// Open Graph
-			{ property: "og:title", content: loaderData?.metatitle },
-			{ property: "og:description", content: loaderData?.excerpt },
-			{
-				property: "og:url",
-				content: `https://certificaatkopen.com/products/${loaderData?.slug}`,
-			},
-			{ property: "og:type", content: "website" },
-			{ property: "og:site_name", content: "Diploma Kopen" },
-			{
-				property: "og:image",
-				content: loaderData?.image
-					? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
-					: "https://certificaatkopen.com/logo.png",
-			},
-			// Twitter Card
-			{ name: "twitter:card", content: "summary_large_image" },
-			{ name: "twitter:title", content: loaderData?.metatitle },
-			{ name: "twitter:description", content: loaderData?.excerpt },
-			{
-				name: "twitter:image",
-				content: loaderData?.image
-					? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
-					: "https://certificaatkopen.com/logo.png",
-			},
-		],
-		links: [
-			{
-				rel: "canonical",
-				href: `https://certificaatkopen.com/products/${loaderData?.slug}`,
-			},
-		],
-		scripts: [
-			{
-				type: "application/ld+json",
-				children: JSON.stringify({
-					"@context": "https://schema.org",
-					"@type": "BreadcrumbList",
-					itemListElement: [
-						{
-							"@type": "ListItem",
-							position: 1,
-							name: "Home",
-							item: "/",
-						},
-						{
-							"@type": "ListItem",
-							position: 2,
-							name: loaderData?.title,
-						},
-					],
-				}),
-			},
-		],
-	}),
+	head: ({ loaderData }) => {
+		// Absent only while the loader is pending or after it threw notFound(),
+		// so these fallbacks are never what a crawler sees.
+		if (!loaderData) {
+			return {};
+		}
+
+		return {
+			meta: [
+				{ title: loaderData.metatitle },
+				{
+					name: "description",
+					content: loaderData.excerpt,
+				},
+				{
+					name: "keywords",
+					content: loaderData.tags.length
+						? loaderData.tags.join(", ")
+						: loaderData.metatitle,
+				},
+				// Open Graph
+				{ property: "og:title", content: loaderData.metatitle },
+				{ property: "og:description", content: loaderData.excerpt },
+				{
+					property: "og:url",
+					content: `https://certificaatkopen.com/products/${loaderData.slug}`,
+				},
+				{ property: "og:type", content: "website" },
+				{ property: "og:site_name", content: "Diploma Kopen" },
+				{
+					property: "og:image",
+					content: loaderData.image
+						? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
+						: "https://certificaatkopen.com/logo.png",
+				},
+				// Twitter Card
+				{ name: "twitter:card", content: "summary_large_image" },
+				{ name: "twitter:title", content: loaderData.metatitle },
+				{ name: "twitter:description", content: loaderData.excerpt },
+				{
+					name: "twitter:image",
+					content: loaderData.image
+						? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
+						: "https://certificaatkopen.com/logo.png",
+				},
+			],
+			links: [
+				{
+					rel: "canonical",
+					href: `https://certificaatkopen.com/products/${loaderData.slug}`,
+				},
+			],
+			scripts: [
+				{
+					type: "application/ld+json",
+					children: JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "BreadcrumbList",
+						itemListElement: [
+							{
+								"@type": "ListItem",
+								position: 1,
+								name: "Home",
+								item: "/",
+							},
+							{
+								"@type": "ListItem",
+								position: 2,
+								name: loaderData.title,
+							},
+						],
+					}),
+				},
+			],
+		};
+	},
 	component: RouteComponent,
 });
 
@@ -129,13 +144,13 @@ function RouteComponent() {
 						Home
 					</Link>
 					<ChevronRight size={16} />
-					<span className="text-indigo-600 font-medium">{product?.title}</span>
+					<span className="text-indigo-600 font-medium">{product.title}</span>
 				</div>
 
 				<section className="bg-gray-100 p-6 rounded-2xl">
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
 						<div className="doc-image rounded-3xl overflow-hidden border border-white/50 flex items-center justify-center relative">
-							{product?.image ? (
+							{product.image ? (
 								<Image
 									src={`/uploadedImages/products/${product.image}`}
 									alt="Gebruikersavatar"
@@ -153,7 +168,7 @@ function RouteComponent() {
 
 						<div className="product-card rounded-3xl px-6 sm:px-8">
 							<h1 className="text-2xl sm:text-3xl font-bold text-slate-800 leading-tight">
-								{product?.title}
+								{product.title}
 								<span className="block text-sm font-normal text-indigo-500 mt-1">
 									Realistisch · Compatibel · Premium afwerking
 								</span>
@@ -164,7 +179,7 @@ function RouteComponent() {
 									<TextAlignStart size={16} /> Beschrijving
 								</h3>
 								<p className="text-slate-600 leading-relaxed mt-1.5">
-									{product?.excerpt}
+									{product.excerpt}
 								</p>
 								<Button onClick={toggleShowMore} className="cursor-pointer">
 									{showMore === true ? (
@@ -180,7 +195,7 @@ function RouteComponent() {
 								{showMore && (
 									<div>
 										<p className="text-slate-600 leading-relaxed mt-1.5">
-											{product?.description}
+											{product.description}
 										</p>
 									</div>
 								)}
@@ -270,60 +285,6 @@ function RouteComponent() {
 							</li>
 						</ol>
 					</div>
-					{/* <div className="bg-white/80 backdrop-blur-sm rounded border border-slate-200/60 p-4 hover:shadow-md transition">
-							<h2 className="text-3xl font-semibold text-blue-600 mb-3">
-								Betaalmethoden
-							</h2>
-							<div className="space-y-3">
-								<div className="flex items-center gap-3">
-									<img
-										src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg"
-										alt="Bitcoin"
-										className="w-8 h-8"
-									/>
-									<span>Cryptocurrency</span>
-								</div>
-								<div className="flex items-center gap-3">
-									<img
-										src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
-										alt="PayPal"
-										className="w-8 h-8"
-									/>
-									<span>PayPal</span>
-								</div>
-								<div className="flex items-center gap-3">
-									<span className="text-2xl">💳</span>
-									<span>Zelle</span>
-								</div>
-								<div className="flex items-center gap-3">
-									<span className="text-2xl">🏦</span>
-									<span>Western Union</span>
-								</div>
-							</div>
-						</div> */}
-					{/* <div className="bg-white/80 backdrop-blur-sm rounded border border-slate-200/60 p-4 hover:shadow-md transition">
-							<h2 className="text-3xl font-semibold text-blue-600 mb-3">
-								Verzendmethoden
-							</h2>
-							<div className="space-y-3">
-								<div className="flex items-center gap-3">
-									<span className="text-2xl">🚚</span>
-									<span>DHL</span>
-								</div>
-								<div className="flex items-center gap-3">
-									<span className="text-2xl">📦</span>
-									<span>FedEx</span>
-								</div>
-								<div className="flex items-center gap-3">
-									<span className="text-2xl">📮</span>
-									<span>USPS</span>
-								</div>
-								<div className="flex items-center gap-3">
-									<span className="text-2xl">📧</span>
-									<span>PDF mailing (digitale kopie)</span>
-								</div>
-							</div>
-						</div> */}
 				</section>
 			</main>
 		</div>

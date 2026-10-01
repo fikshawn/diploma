@@ -2,15 +2,10 @@ import { redirect } from "@tanstack/react-router";
 import { createMiddleware } from "@tanstack/react-start";
 import { fetchCurrentSession } from "./server_functions/auth/authentication";
 
-export const authMiddleware = createMiddleware().server(async ({ next }) => {
-	const user = await fetchCurrentSession();
-
-	if (!user) {
-		throw redirect({ to: "/panchak" });
-	}
-	return next({ context: { user } });
-});
-
+/**
+ * Route-level guard for `/dashboard/*`. Server functions have their own guards
+ * in ./server_functions/auth/guards — this one only covers route rendering.
+ */
 export const adminMiddleware = createMiddleware().server(async ({ next }) => {
 	const user = await fetchCurrentSession();
 

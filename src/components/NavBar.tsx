@@ -37,12 +37,6 @@ export default function NavBar() {
 								>
 									FAQ
 								</Link>
-								{/* <Link
-									to="/contact-us"
-									className="[&.active]:bg-gray-100 text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium"
-								>
-									Contact
-								</Link> */}
 							</div>
 						</div>
 					</div>
@@ -65,38 +59,6 @@ export default function NavBar() {
 									</button>
 								</div>
 							)}
-							{/* {user ? (
-								<div className="space-x-2">
-									<Link
-										to="/dashboard"
-										className="[&.active]:bg-gray-100 text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium"
-									>
-										Dashboard
-									</Link>
-									<button
-										type="button"
-										onClick={() => handleLogout()}
-										className="text-red-500 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium"
-									>
-										Uitloggen
-									</button>
-								</div>
-							) : (
-								<div>
-									<Link
-										to="/panchak"
-										className="text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium"
-									>
-										Inloggen
-									</Link>
-									<Link
-										to="/panchak2"
-										className="ml-4 bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700"
-									>
-										Registreren
-									</Link>
-								</div>
-							)} */}
 						</div>
 
 						<div className="sm:hidden">
@@ -143,29 +105,6 @@ export default function NavBar() {
 					>
 						FAQ
 					</Link>
-					{/* <Link
-						to="/contact-us"
-						className="bg-gray-100 text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
-					>
-						Contact
-					</Link> */}
-
-					{/* <div className="pt-4 pb-3 border-t border-gray-200">
-						<div className="flex items-center px-3 space-y-2 flex-col">
-							<Link
-								to="/panchak"
-								className="block w-full text-center text-gray-900 bg-gray-100 px-3 py-2 rounded-md text-base font-medium"
-							>
-								Inloggen
-							</Link>
-							<Link
-								to="/panchak2"
-								className="block w-full text-center bg-indigo-600 text-white px-3 py-2 rounded-md text-base font-medium"
-							>
-								Registreren
-							</Link>
-						</div>
-					</div> */}
 				</div>
 			</div>
 		</nav>

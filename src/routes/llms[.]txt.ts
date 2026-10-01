@@ -28,7 +28,6 @@ export const Route = createFileRoute("/llms.txt")({
 ## Pagina's
 - Home: ${host}/
 - FAQ: ${host}/faq
-- Contact: ${host}/contact-us
 
 ## Producten
 ${productList}

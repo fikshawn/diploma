@@ -30,8 +30,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title:
-					"Koop certificaten online | Jouw nummer 1 online site voor het behalen van je certificaten",
+				title: "Koop uw VWO-, HAVO-, HBO- en VCA-certificaten.",
 			},
 			{
 				name: "description",
@@ -89,17 +88,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				/>
 				<Footer />
 				<Toaster position="top-center" richColors />
-				{/* <TanStackDevtools
-					config={{
-						position: "bottom-right",
-					}}
-					plugins={[
-						{
-							name: "Tanstack Router",
-							render: <TanStackRouterDevtoolsPanel />,
-						},
-					]}
-				/> */}
 				<Scripts />
 			</body>
 		</html>

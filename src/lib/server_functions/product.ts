@@ -1,37 +1,39 @@
-import fs from "node:fs/promises";
-import path from "node:path";
 import { createServerFn } from "@tanstack/react-start";
-import { desc, eq } from "drizzle-orm";
+import { and, desc, eq, ne } from "drizzle-orm";
 import { db, products } from "#/db";
 import { deleteImage } from "../imageDelete";
-import { slugify } from "../slugify";
+import { buildUniqueSlug } from "../slugify";
 import {
 	createProductSchema,
 	updateProductSchema,
 } from "../validators/product";
+import { requireAdminMiddleware } from "./auth/guards";
+
+/** Resolves a unique slug, ignoring the row identified by `excludeId`. */
+async function uniqueSlugFor(
+	title: string,
+	excludeId?: string,
+): Promise<string> {
+	return buildUniqueSlug(title, async (slug) => {
+		const conditions = [eq(products.slug, slug)];
+		if (excludeId) {
+			conditions.push(ne(products.id, excludeId));
+		}
+
+		const existing = await db.query.products.findFirst({
+			where: and(...conditions),
+		});
+
+		return Boolean(existing);
+	});
+}
 
 // create product
 export const createProduct = createServerFn({ method: "POST" })
+	.middleware([requireAdminMiddleware])
 	.validator(createProductSchema)
 	.handler(async ({ data }) => {
-		const baseSlug = slugify(data.title);
-		let finalSlug = baseSlug;
-		let counter = 0;
-		let isUnique = false;
-
-		// Loop continuously until a completely unique slug is found
-		while (!isUnique) {
-			const existing = await db.query.products.findFirst({
-				where: eq(products.slug, finalSlug),
-			});
-
-			if (!existing) {
-				isUnique = true;
-			} else {
-				counter++;
-				finalSlug = `${baseSlug}-${counter}`;
-			}
-		}
+		const finalSlug = await uniqueSlugFor(data.title);
 
 		const [product] = await db
 			.insert(products)
@@ -45,6 +47,7 @@ export const createProduct = createServerFn({ method: "POST" })
 				tags: data.tags,
 			})
 			.returning();
+
 		return {
 			success: true,
 			product,
@@ -68,6 +71,7 @@ export const getProducts = createServerFn({ method: "GET" }).handler(
 
 // Delete product
 export const deleteProduct = createServerFn({ method: "POST" })
+	.middleware([requireAdminMiddleware])
 	.validator((data: { id: string }) => data)
 	.handler(async ({ data }) => {
 		// First, get the product to find its image path
@@ -82,21 +86,12 @@ export const deleteProduct = createServerFn({ method: "POST" })
 			};
 		}
 
-		// Delete the image file if it exists
+		// Remove the image file if it exists. A missing file must not block the
+		// row deletion — the orphan cleanup is best-effort, the delete is not.
 		if (product.image) {
-			// Adjust this path based on your folder structure
-			const imagePath = path.join(
-				process.cwd(),
-				"public",
-				"uploadedImages",
-				"products",
-				product.image,
-			);
-
-			// Check if file exists before deleting
-			await fs.access(imagePath);
-			await fs.unlink(imagePath);
+			await deleteImage({ data: { oldImage: product.image } });
 		}
+
 		// Delete the product from database
 		await db.delete(products).where(eq(products.id, data.id));
 
@@ -117,28 +112,30 @@ export const getProductBySlug = createServerFn({ method: "GET" })
 	});
 
 export const updateProductById = createServerFn({ method: "POST" })
+	.middleware([requireAdminMiddleware])
 	.validator(updateProductSchema)
 	.handler(async ({ data }) => {
-		const baseSlug = slugify(data.title);
-		let finalSlug = baseSlug;
-		let counter = 0;
-		let isUnique = false;
+		const finalSlug = await uniqueSlugFor(data.title, data.id);
 
-		// Loop continuously until a completely unique slug is found
-		while (!isUnique) {
-			const existing = await db.query.products.findFirst({
-				where: eq(products.slug, finalSlug),
-			});
+		const existing = await db.query.products.findFirst({
+			where: eq(products.id, data.id),
+		});
 
-			if (!existing) {
-				isUnique = true;
-			} else {
-				counter++;
-				finalSlug = `${baseSlug}-${counter}`;
-			}
+		if (!existing) {
+			return {
+				success: false,
+				product: undefined,
+				message: "Product not found!",
+			};
 		}
-		await deleteImage({ data: { oldImage: data.oldImage } });
-		const product = await db
+
+		// Only discard the previous file when the image actually changes.
+		// Deleting unconditionally wiped the file a title-only edit still points at.
+		if (data.oldImage && data.oldImage !== data.image) {
+			await deleteImage({ data: { oldImage: data.oldImage } });
+		}
+
+		const [product] = await db
 			.update(products)
 			.set({
 				title: data.title,
@@ -151,6 +148,7 @@ export const updateProductById = createServerFn({ method: "POST" })
 			})
 			.where(eq(products.id, data.id))
 			.returning();
+
 		return {
 			success: true,
 			product,

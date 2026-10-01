@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ContactUsRouteImport } from './routes/contact-us'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
@@ -27,11 +26,6 @@ import { Route as DashboardProductsProductSlugEditRouteImport } from './routes/d
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactUsRoute = ContactUsRouteImport.update({
-  id: '/contact-us',
-  path: '/contact-us',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
@@ -100,7 +94,6 @@ const DashboardProductsProductSlugEditRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
-  '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/panchak': typeof PanchakRoute
@@ -115,7 +108,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/panchak': typeof PanchakRoute
@@ -132,7 +124,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
-  '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/panchak': typeof PanchakRoute
@@ -150,7 +141,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
-    | '/contact-us'
     | '/faq'
     | '/llms.txt'
     | '/panchak'
@@ -165,7 +155,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/contact-us'
     | '/faq'
     | '/llms.txt'
     | '/panchak'
@@ -181,7 +170,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
-    | '/contact-us'
     | '/faq'
     | '/llms.txt'
     | '/panchak'
@@ -198,7 +186,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
-  ContactUsRoute: typeof ContactUsRoute
   FaqRoute: typeof FaqRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   PanchakRoute: typeof PanchakRoute
@@ -215,13 +202,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact-us': {
-      id: '/contact-us'
-      path: '/contact-us'
-      fullPath: '/contact-us'
-      preLoaderRoute: typeof ContactUsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -332,7 +312,6 @@ const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
-  ContactUsRoute: ContactUsRoute,
   FaqRoute: FaqRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
   PanchakRoute: PanchakRoute,

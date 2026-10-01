@@ -1,10 +1,12 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { extname, join } from "node:path";
 import { createServerFn } from "@tanstack/react-start";
+import { requireAdminMiddleware } from "#/lib/server_functions/auth/guards";
 
 export const uploadImage = createServerFn({
 	method: "POST",
 })
+	.middleware([requireAdminMiddleware])
 	.validator(async (formData: FormData) => {
 		if (!(formData instanceof FormData)) {
 			throw new Error("Invalid payload format");
