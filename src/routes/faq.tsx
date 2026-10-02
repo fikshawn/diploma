@@ -11,9 +11,34 @@ import {
 } from "lucide-react";
 import type { FC, SVGProps } from "react";
 import { useState } from "react";
+import { SITE_URL } from "#/lib/site";
+
+const FAQ_TITLE = "Veelgestelde vragen | Certificaat Kopen";
+const FAQ_DESCRIPTION =
+	"Antwoorden op veelgestelde vragen over bestellen, levering, betaling en certificaten bij Certificaat Kopen.";
 
 export const Route = createFileRoute("/faq")({
 	head: () => ({
+		meta: [
+			{ title: FAQ_TITLE },
+			{ name: "description", content: FAQ_DESCRIPTION },
+			{ property: "og:title", content: FAQ_TITLE },
+			{ property: "og:description", content: FAQ_DESCRIPTION },
+			{ property: "og:url", content: `${SITE_URL}/faq` },
+			{ property: "og:type", content: "website" },
+			{ property: "og:site_name", content: "Diploma Kopen" },
+			{ property: "og:image", content: `${SITE_URL}/logo.png` },
+			{ name: "twitter:card", content: "summary_large_image" },
+			{ name: "twitter:title", content: FAQ_TITLE },
+			{ name: "twitter:description", content: FAQ_DESCRIPTION },
+			{ name: "twitter:image", content: `${SITE_URL}/logo.png` },
+		],
+		links: [
+			{
+				rel: "canonical",
+				href: `${SITE_URL}/faq`,
+			},
+		],
 		scripts: [
 			{
 				type: "application/ld+json",

@@ -1,8 +1,7 @@
 // src/routes/llms[.]txt.ts
 import { createFileRoute } from "@tanstack/react-router";
 import { getProducts } from "#/lib/server_functions/product";
-
-const host = process.env.SITE_URL ?? "https://certificaatkopen.com";
+import { SITE_URL as host } from "#/lib/site";
 
 export const Route = createFileRoute("/llms.txt")({
 	server: {

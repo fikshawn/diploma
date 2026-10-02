@@ -8,6 +8,7 @@ import Footer from "#/components/Footer";
 import NavBar from "#/components/NavBar";
 import { TelegramWidget } from "#/components/TelegramWidget";
 import { fetchCurrentSession } from "#/lib/server_functions/auth/authentication";
+import { SITE_URL } from "#/lib/site";
 import appCss from "../styles.css?url";
 
 // 1. Define the global context type based on your function's return type
@@ -30,7 +31,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "Koop uw VWO-, HAVO-, HBO- en VCA-certificaten.",
+				title: "Koop uw VWO-, HAVO-, HBO- en VCA-diploma's en -certificaten.",
 			},
 			{
 				name: "description",
@@ -52,7 +53,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 			},
 			{
 				property: "og:url",
-				content: "https://certificaatkopen.com",
+				content: SITE_URL,
 			},
 			{
 				property: "og:site_name",
@@ -60,7 +61,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 			},
 			{
 				property: "og:image",
-				content: "https://certificaatkopen.com/logo.png",
+				content: `${SITE_URL}/logo.png`,
 			},
 		],
 		links: [

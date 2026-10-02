@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { CircleCheck } from "lucide-react";
 import { getProducts } from "#/lib/server_functions/product";
+import { SITE_URL } from "#/lib/site";
 
 export const Route = createFileRoute("/")({
 	loader: async () => {
@@ -9,6 +10,12 @@ export const Route = createFileRoute("/")({
 		return products;
 	},
 	head: ({ loaderData }) => ({
+		links: [
+			{
+				rel: "canonical",
+				href: SITE_URL,
+			},
+		],
 		scripts: [
 			{
 				type: "application/ld+json",
@@ -21,8 +28,8 @@ export const Route = createFileRoute("/")({
 							"@type": "ListItem",
 							position: index + 1,
 							name: product.title,
-							image: `https://certificaatkopen.com/uploadedImages/products/${product.image}`,
-							url: `https://certificaatkopen.com/products/${product.slug}`,
+							image: `${SITE_URL}/uploadedImages/products/${product.image}`,
+							url: `${SITE_URL}/products/${product.slug}`,
 							description: product.excerpt,
 						}),
 					),

@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Button } from "#/components/ui/button";
 import { fetchSmallFile } from "#/lib/download-handler";
 import { getProductBySlug } from "#/lib/server_functions/product";
+import { SITE_URL } from "#/lib/site";
 
 export const Route = createFileRoute("/products/$productSlug")({
 	loader: async ({ params }) => {
@@ -51,15 +52,15 @@ export const Route = createFileRoute("/products/$productSlug")({
 				{ property: "og:description", content: loaderData.excerpt },
 				{
 					property: "og:url",
-					content: `https://certificaatkopen.com/products/${loaderData.slug}`,
+					content: `${SITE_URL}/products/${loaderData.slug}`,
 				},
 				{ property: "og:type", content: "website" },
 				{ property: "og:site_name", content: "Diploma Kopen" },
 				{
 					property: "og:image",
 					content: loaderData.image
-						? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
-						: "https://certificaatkopen.com/logo.png",
+						? `${SITE_URL}/uploadedImages/products/${loaderData.image}`
+						: `${SITE_URL}/logo.png`,
 				},
 				// Twitter Card
 				{ name: "twitter:card", content: "summary_large_image" },
@@ -68,14 +69,14 @@ export const Route = createFileRoute("/products/$productSlug")({
 				{
 					name: "twitter:image",
 					content: loaderData.image
-						? `https://certificaatkopen.com/uploadedImages/products/${loaderData.image}`
-						: "https://certificaatkopen.com/logo.png",
+						? `${SITE_URL}/uploadedImages/products/${loaderData.image}`
+						: `${SITE_URL}/logo.png`,
 				},
 			],
 			links: [
 				{
 					rel: "canonical",
-					href: `https://certificaatkopen.com/products/${loaderData.slug}`,
+					href: `${SITE_URL}/products/${loaderData.slug}`,
 				},
 			],
 			scripts: [
