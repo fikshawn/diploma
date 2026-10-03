@@ -27,6 +27,11 @@ const config = defineConfig({
 		nitro({
 			rollupConfig: { external: [/^@sentry\//] },
 			serverDir: "./server",
+			// Writes .gz and .br next to every compressible build asset and
+			// prerendered route, which Nitro's asset handler then picks between
+			// per request. Zstd is left off: it needs Node >= 22.15 and saves
+			// little over brotli for text.
+			compressPublicAssets: { gzip: true, brotli: true },
 		}),
 		tailwindcss(),
 		tanstackStart({

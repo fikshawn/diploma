@@ -41,6 +41,11 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 					"Koop certificaten online — bestel certificaten en diploma's zoals VWO, HAVO, HBO en VCA met een uniform, compatibel en premium afwerking.",
 			},
 			{
+				name: "keywords",
+				content:
+					"diploma kopen, MBO diploma kopen, VCA diploma kopen, HAVO diploma replica, certificaat kopen online, certificaten online, diploma online, diploma kopen online, certificaten kopen online, diploma's kopen online,",
+			},
+			{
 				property: "og:title",
 				content: "Koop certificaten online",
 			},
@@ -65,11 +70,45 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 				property: "og:image",
 				content: `${SITE_URL}/logo.png`,
 			},
+			{
+				name: "theme-color",
+				content: "#1e293b",
+			},
 		],
 		links: [
 			{
 				rel: "stylesheet",
 				href: appCss,
+			},
+			// Browsers only fall back to requesting /favicon.ico by convention, so
+			// the icons are declared for anything that reads the HTML — Google Search
+			// Console included, which reports a missing favicon otherwise.
+			{
+				rel: "icon",
+				href: "/favicon.ico",
+				sizes: "any",
+			},
+			{
+				rel: "icon",
+				type: "image/png",
+				sizes: "32x32",
+				href: "/icon-32.png",
+			},
+			{
+				rel: "icon",
+				type: "image/png",
+				sizes: "16x16",
+				href: "/icon-16.png",
+			},
+			// iOS ignores the icon links above and only ever looks for this one.
+			{
+				rel: "apple-touch-icon",
+				sizes: "180x180",
+				href: "/apple-touch-icon.png",
+			},
+			{
+				rel: "manifest",
+				href: "/manifest.json",
 			},
 		],
 	}),

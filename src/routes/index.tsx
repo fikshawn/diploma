@@ -1,8 +1,44 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
-import { CircleCheck } from "lucide-react";
+import { CircleCheck, Star } from "lucide-react";
 import { getProducts } from "#/lib/server_functions/product";
 import { SITE_URL } from "#/lib/site";
+
+const RATING = 5;
+const STAR_SLOTS = Array.from({ length: RATING }, (_, slot) => slot + 1);
+
+/**
+ * Static search terms shown at the foot of the page. Deliberately plain text
+ * rather than links: there are no per-keyword landing pages to point at, and a
+ * link to a missing route would be a broken link, which is worse for crawling
+ * than an unlinked term.
+ */
+const KEYWORD_TAGS = [
+	"diploma kopen",
+	"MBO diploma kopen",
+	"VCA diploma kopen",
+	"HAVO diploma replica",
+	"certificaat kopen online",
+];
+
+/**
+ * The five stars are decoration, so the group carries the accessible name and
+ * each icon is hidden from assistive tech. Giving every icon its own <title>
+ * would announce the rating five times.
+ */
+function StarRating() {
+	return (
+		<div
+			className="flex items-center mb-4"
+			role="img"
+			aria-label={`${RATING} van ${RATING} sterren`}
+		>
+			{STAR_SLOTS.map((slot) => (
+				<Star key={slot} className="w-5 h-5 text-yellow-400 fill-current" />
+			))}
+		</div>
+	);
+}
 
 export const Route = createFileRoute("/")({
 	loader: async () => {
@@ -128,17 +164,7 @@ function Home() {
 					</div>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 						<div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-							<div className="flex items-center mb-4">
-								{[...Array(5)].map((_, i) => (
-									<svg
-										key={i}
-										className="w-5 h-5 text-yellow-400 fill-current"
-										viewBox="0 0 20 20"
-									>
-										<path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-									</svg>
-								))}
-							</div>
+							<StarRating />
 							<p className="text-slate-700 mb-6 italic">
 								"Snel en professioneel! Mijn diploma werd binnen 24 uur geleverd
 								en ziet er perfect uit. Zeer tevreden!"
@@ -148,17 +174,7 @@ function Home() {
 						</div>
 
 						<div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-							<div className="flex items-center mb-4">
-								{[...Array(5)].map((_, i) => (
-									<svg
-										key={i}
-										className="w-5 h-5 text-yellow-400 fill-current"
-										viewBox="0 0 20 20"
-									>
-										<path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-									</svg>
-								))}
-							</div>
+							<StarRating />
 							<p className="text-slate-700 mb-6 italic">
 								"Uitstekende service! Alles verliep soepel en discreet. Kan ik
 								zeker aanraden aan anderen."
@@ -168,17 +184,7 @@ function Home() {
 						</div>
 
 						<div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-							<div className="flex items-center mb-4">
-								{[...Array(5)].map((_, i) => (
-									<svg
-										key={i}
-										className="w-5 h-5 text-yellow-400 fill-current"
-										viewBox="0 0 20 20"
-									>
-										<path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-									</svg>
-								))}
-							</div>
+							<StarRating />
 							<p className="text-slate-700 mb-6 italic">
 								"Betrouwbaar en snel. De kwaliteit is top en de communicatie was
 								heel duidelijk. 5 sterren!"
@@ -295,6 +301,27 @@ function Home() {
 							Veiligheid, Gezondheid en Milieu (VCA)
 						</p>
 					</a>
+				</div>
+			</section>
+
+			<section aria-labelledby="zoektermen" className="bg-slate-800 py-12">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<h2
+						id="zoektermen"
+						className="text-center text-sm font-semibold uppercase tracking-wider text-slate-300"
+					>
+						Zoektermen
+					</h2>
+					<ul className="mt-5 flex flex-wrap justify-center gap-2.5">
+						{KEYWORD_TAGS.map((tag) => (
+							<li
+								key={tag}
+								className="rounded-full border border-slate-600 px-4 py-1.5 text-sm text-slate-200"
+							>
+								{tag}
+							</li>
+						))}
+					</ul>
 				</div>
 			</section>
 		</div>
