@@ -31,7 +31,9 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "Koop uw VWO-, HAVO-, HBO- en VCA-diploma's en -certificaten.",
+				// Kept under 580px in the SERP font so it is not truncated.
+				// 538px, all target keywords intact.
+				title: "Koop VWO-, HAVO-, HBO- en VCA-diploma's en certificaten",
 			},
 			{
 				name: "description",
@@ -76,7 +78,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="nl">
 			<head>
 				<HeadContent />
 			</head>
