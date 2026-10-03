@@ -69,6 +69,7 @@ function Home() {
 					</div>
 				</div>
 			</section>
+
 			<section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 				<div className="flex items-center justify-between mb-3">
 					<div>
@@ -113,6 +114,188 @@ function Home() {
 						</div>
 					</div>
 				))}
+			</section>
+
+			<section className="bg-gray-50 py-16">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="text-center mb-12">
+						<h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+							Wat onze klanten zeggen
+						</h2>
+						<p className="mt-4 text-slate-600 text-lg">
+							Echte reviews van tevreden klanten
+						</p>
+					</div>
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+						<div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+							<div className="flex items-center mb-4">
+								{[...Array(5)].map((_, i) => (
+									<svg
+										key={i}
+										className="w-5 h-5 text-yellow-400 fill-current"
+										viewBox="0 0 20 20"
+									>
+										<path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+									</svg>
+								))}
+							</div>
+							<p className="text-slate-700 mb-6 italic">
+								"Snel en professioneel! Mijn diploma werd binnen 24 uur geleverd
+								en ziet er perfect uit. Zeer tevreden!"
+							</p>
+							<div className="font-semibold text-slate-800">- Jan M.</div>
+							<div className="text-sm text-slate-500">Amsterdam</div>
+						</div>
+
+						<div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+							<div className="flex items-center mb-4">
+								{[...Array(5)].map((_, i) => (
+									<svg
+										key={i}
+										className="w-5 h-5 text-yellow-400 fill-current"
+										viewBox="0 0 20 20"
+									>
+										<path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+									</svg>
+								))}
+							</div>
+							<p className="text-slate-700 mb-6 italic">
+								"Uitstekende service! Alles verliep soepel en discreet. Kan ik
+								zeker aanraden aan anderen."
+							</p>
+							<div className="font-semibold text-slate-800">- Sarah V.</div>
+							<div className="text-sm text-slate-500">Rotterdam</div>
+						</div>
+
+						<div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+							<div className="flex items-center mb-4">
+								{[...Array(5)].map((_, i) => (
+									<svg
+										key={i}
+										className="w-5 h-5 text-yellow-400 fill-current"
+										viewBox="0 0 20 20"
+									>
+										<path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+									</svg>
+								))}
+							</div>
+							<p className="text-slate-700 mb-6 italic">
+								"Betrouwbaar en snel. De kwaliteit is top en de communicatie was
+								heel duidelijk. 5 sterren!"
+							</p>
+							<div className="font-semibold text-slate-800">- Mike R.</div>
+							<div className="text-sm text-slate-500">Utrecht</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white">
+				<div className="text-center mb-12">
+					<h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+						Overzicht van Diplomas
+					</h2>
+					<p className="mt-4 text-slate-600 text-lg">
+						Informatie over de verschillende diploma's
+					</p>
+				</div>
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+					<a
+						href="https://nl.wikipedia.org/wiki/Voorbereidend_wetenschappelijk_onderwijs"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="p-6 bg-gray-50 rounded-xl border border-gray-200 hover:shadow-md transition-shadow hover:bg-gray-100"
+					>
+						<h3 className="text-lg font-semibold text-slate-800 mb-2">VWO</h3>
+						<p className="text-slate-600 text-sm">
+							Voorbereidend Wetenschappelijk Onderwijs
+						</p>
+					</a>
+					<a
+						href="https://nl.wikipedia.org/wiki/Hoger_algemeen_voortgezet_onderwijs"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="p-6 bg-gray-50 rounded-xl border border-gray-200 hover:shadow-md transition-shadow hover:bg-gray-100"
+					>
+						<h3 className="text-lg font-semibold text-slate-800 mb-2">HAVO</h3>
+						<p className="text-slate-600 text-sm">
+							Hoger Algemeen Voortgezet Onderwijs
+						</p>
+					</a>
+					<a
+						href="https://nl.wikipedia.org/wiki/Middelbaar_beroepsonderwijs"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="p-6 bg-gray-50 rounded-xl border border-gray-200 hover:shadow-md transition-shadow hover:bg-gray-100"
+					>
+						<h3 className="text-lg font-semibold text-slate-800 mb-2">MBO</h3>
+						<p className="text-slate-600 text-sm">
+							Middelbaar Beroepsonderwijs
+						</p>
+					</a>
+					<a
+						href="https://nl.wikipedia.org/wiki/Hoger_beroepsonderwijs"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="p-6 bg-gray-50 rounded-xl border border-gray-200 hover:shadow-md transition-shadow hover:bg-gray-100"
+					>
+						<h3 className="text-lg font-semibold text-slate-800 mb-2">HBO</h3>
+						<p className="text-slate-600 text-sm">Hoger Beroepsonderwijs</p>
+					</a>
+					<a
+						href="https://nl.wikipedia.org/wiki/Wetenschappelijk_onderwijs"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="p-6 bg-gray-50 rounded-xl border border-gray-200 hover:shadow-md transition-shadow hover:bg-gray-100"
+					>
+						<h3 className="text-lg font-semibold text-slate-800 mb-2">WO</h3>
+						<p className="text-slate-600 text-sm">Wetenschappelijk Onderwijs</p>
+					</a>
+					<a
+						href="https://nl.wikipedia.org/wiki/Bachelor"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="p-6 bg-gray-50 rounded-xl border border-gray-200 hover:shadow-md transition-shadow hover:bg-gray-100"
+					>
+						<h3 className="text-lg font-semibold text-slate-800 mb-2">
+							Bachelor
+						</h3>
+						<p className="text-slate-600 text-sm">Bachelor Diploma</p>
+					</a>
+					<a
+						href="https://nl.wikipedia.org/wiki/Master_(graad)"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="p-6 bg-gray-50 rounded-xl border border-gray-200 hover:shadow-md transition-shadow hover:bg-gray-100"
+					>
+						<h3 className="text-lg font-semibold text-slate-800 mb-2">
+							Master
+						</h3>
+						<p className="text-slate-600 text-sm">Master Diploma</p>
+					</a>
+					<a
+						href="https://nl.wikipedia.org/wiki/Propedeuse"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="p-6 bg-gray-50 rounded-xl border border-gray-200 hover:shadow-md transition-shadow hover:bg-gray-100"
+					>
+						<h3 className="text-lg font-semibold text-slate-800 mb-2">
+							Propedeuse
+						</h3>
+						<p className="text-slate-600 text-sm">Propedeuse Diploma</p>
+					</a>
+					<a
+						href="https://nl.wikipedia.org/wiki/VCA"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="p-6 bg-gray-50 rounded-xl border border-gray-200 hover:shadow-md transition-shadow hover:bg-gray-100"
+					>
+						<h3 className="text-lg font-semibold text-slate-800 mb-2">VCA</h3>
+						<p className="text-slate-600 text-sm">
+							Veiligheid, Gezondheid en Milieu (VCA)
+						</p>
+					</a>
+				</div>
 			</section>
 		</div>
 	);
