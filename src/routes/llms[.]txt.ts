@@ -34,7 +34,7 @@ ${productList}
 ## Contact
 - Website: ${host}/
 - E-mail: support@certificaatkopen.com
-- Telegram: https://t.me/Cornelisjansen
+- Telegram: https://t.me/michealtrust85
 `;
 
 				return new Response(content, {

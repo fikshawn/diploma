@@ -125,7 +125,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<NavBar />
 				{children}
 				<TelegramWidget
-					username="Cornelisjansen"
+					username="michealtrust85"
 					message="Hello! I need some assistance."
 				/>
 				<Footer />
