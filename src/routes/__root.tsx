@@ -4,9 +4,9 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { Toaster } from "sonner";
+import { ContactWidget } from "#/components/ContactWidget";
 import Footer from "#/components/Footer";
 import NavBar from "#/components/NavBar";
-import { TelegramWidget } from "#/components/TelegramWidget";
 import { fetchCurrentSession } from "#/lib/server_functions/auth/authentication";
 import { SITE_URL } from "#/lib/site";
 import appCss from "../styles.css?url";
@@ -124,10 +124,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<body>
 				<NavBar />
 				{children}
-				<TelegramWidget
+				<ContactWidget
+					signalUsername="https://signal.me/#eu/corneljansen.09"
+					telegramUsername="michealtrust85"
+				/>
+				{/* <TelegramWidget
 					username="michealtrust85"
 					message="Hello! I need some assistance."
-				/>
+				/> */}
 				<Footer />
 				<Toaster position="top-center" richColors />
 				<Scripts />
